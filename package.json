@@ -1,5 +1,4 @@
 {
-  "homepage": "https://luiz-gustavo-soares.github.io/DisneySearch",
   "name": "disney-search",
   "private": true,
   "version": "1.0.0",
@@ -7,9 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build", 
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview --port 8080"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -17,7 +14,6 @@
     "react-icons": "^4.7.1"
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
