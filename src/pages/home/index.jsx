@@ -44,9 +44,16 @@ export function Home() {
     setDetailCharacter(<DetailCharacter id={id} search={buscarPersonagens}/>)
   }
 
+  function reset(){
+    setDetailCharacter()
+    setPersonagensCardBusca([])
+  }
+
   return (
     <div className="home">
-      
+        <header>
+            <h1 onClick={reset} >DisneySearch</h1>
+        </header>
       <div className="buscar">
         <input 
           type="text" 
