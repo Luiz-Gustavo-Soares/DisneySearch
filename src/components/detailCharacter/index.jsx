@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react'
 import './style.css'
 
-export function DetailCharacter({id}) {
+export function DetailCharacter(props) {
 
-    const [informacoes, setInformacoes] = useState({name:'', imageUrl:'', filmes:'', series:'', jogos:''})
+    const [informacoes, setInformacoes] = useState({name:'', imageUrl:'', filmes:[], series:[], jogos:[]})
 
 
     useEffect(()=>{     
-        fetch(`https://api.disneyapi.dev/characters/${id}`)
+        fetch(`https://api.disneyapi.dev/characters/${props.id}`)
         .then(response => response.json())
         .then(data => {
             const newInfo = {
                 name: data.name,
                 imageUrl: data.imageUrl,
-                filmes: data.films.toString().replace(/,/g, ', '),
-                series: data.tvShows.toString().replace(/,/g, ', '),
-                jogos: data.videoGames.toString().replace(/,/g, ', ')
+                filmes: data.films,
+                series: data.tvShows,
+                jogos: data.videoGames
                 }
             
             setInformacoes(newInfo)
@@ -25,7 +25,7 @@ export function DetailCharacter({id}) {
 
     return (
         <div className="detail-character">
-            <div>
+            <div className='detail-character-header' >
                 <h2>{informacoes.name}</h2>
                 <img src={informacoes.imageUrl} alt={informacoes.name} />
                 
@@ -33,17 +33,23 @@ export function DetailCharacter({id}) {
             <div className='shows-character'>
                 <div className="show-character">
                     <h3>Filmes</h3>
-                    <p>{informacoes.filmes}</p>
+                    <ul>
+                        {informacoes['filmes'].map(name => <li key={name} onClick={() => props.search(name, 'films')} >{name}</li>)}         
+                    </ul>
                 </div>
 
                 <div className="show-character">
                     <h3>Series</h3>
-                    <p>{informacoes.series}</p>
+                    <ul>
+                        {informacoes.series.map(name => <li key={name} onClick={() => props.search(name, 'tvShows')} >{name}</li>)}         
+                    </ul>
                 </div>
 
                 <div className="show-character">
                     <h3>Jogos</h3>
-                    <p>{informacoes.jogos}</p>
+                    <ul>
+                        {informacoes.jogos.map(name => <li key={name} onClick={() => props.search(name, 'videoGames')} >{name}</li>)}         
+                    </ul>
                 </div>
             </div>
 

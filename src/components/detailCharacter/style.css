@@ -7,6 +7,11 @@
     align-items: center;
 }
 
+.detail-character-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 .shows-character {
     display: flex;
     flex-direction: row;
@@ -21,9 +26,21 @@
 
 .show-character > h3 {
     text-decoration: underline;
+    margin-bottom: 4px;
 }
 
-.show-character p {
-    font-size: 0.9em;
-    margin-left: 8px;
+.show-character li {
+    font-size: 0.8em;
+
+    margin-left: 40px;
+    width: fit-content;
+
+    cursor: pointer;
+
+    list-style-type: circle;
+}
+
+.show-character li:hover {
+    color: var(--color3);
+    text-decoration: underline;
 }

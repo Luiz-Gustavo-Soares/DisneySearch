@@ -11,17 +11,17 @@ export function Home() {
   
   const [personagemBuscInput, setPersonagemBuscInput] = useState('')
   const [personagensCardBusca, setPersonagensCardBusca] = useState([])
-  const [modoView, setModoView] = useState()
+  const [detailCharacter, setDetailCharacter] = useState()
 
-  function buscarPersonagens(nomePersonagem){
+  function buscarPersonagens(nome, tipo='name'){
     
-    if ( nomePersonagem == ''){
+    if ( nome == ''){
       return
     }
 
-    setModoView()
+    setDetailCharacter()
 
-    fetch(`https://api.disneyapi.dev/character?name=${nomePersonagem}`)
+    fetch(`https://api.disneyapi.dev/character?${tipo}=${nome}`)
     .then(response => response.json())
     .then(data => {
 
@@ -41,7 +41,7 @@ export function Home() {
 
   function getDetailCharacter(id) {
     setPersonagensCardBusca([])
-    setModoView(<DetailCharacter id={id}/>)
+    setDetailCharacter(<DetailCharacter id={id} search={buscarPersonagens}/>)
   }
 
   return (
@@ -61,7 +61,7 @@ export function Home() {
         </button>
       </div>
 
-      {modoView}
+      {detailCharacter}
 
       { 
       personagensCardBusca.map((personagem) => 
