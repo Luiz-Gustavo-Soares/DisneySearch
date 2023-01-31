@@ -1,0 +1,24 @@
+:root {
+    --font1: 'Roboto', sans-serif;
+    --font2: 'Rubik', sans-serif;
+    --font3: 'Niconne', cursive;
+
+    --color1: #050326;
+    --color2: #182859;
+    --color3: #27498C;
+    --color4: #05F2F2;
+    --color5: #F2F2F2;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: var(--font1);
+}
+
+h1, h2, h3 {
+    font-family: var(--font2);
+}
