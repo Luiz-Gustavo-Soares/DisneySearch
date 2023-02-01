@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import "./style.css"
+import "./style.css";
 import { BsSearch } from "react-icons/bs";
 
 import { CharacterCard } from "../../components/characterCard";
-import { DetailCharacter } from "../../components/detailCharacter"
+import { DetailCharacter } from "../../components/detailCharacter";
 import { LoadingCard } from "../../components/loadingCard";
+import { InfoCard } from "../../components/infoCard";
 
 
 export function Home() {
@@ -14,10 +15,16 @@ export function Home() {
   const [personagensCardBusca, setPersonagensCardBusca] = useState([])
   const [detailCharacter, setDetailCharacter] = useState()
   const [loader, setLoader] = useState(false)
+  const [infoMsg, setInfoMsg] = useState('')
+  
+  
+  useEffect(()=> setInfoMsg(''), [personagemBuscInput])
+
 
   function buscarPersonagens(nome, tipo='name'){
     
     if ( nome == ''){
+      setInfoMsg('Nenhum dado inserido')
       return
     }
 
@@ -29,6 +36,10 @@ export function Home() {
     .then(response => response.json())
     .then(data => {
 
+      if (data.count == 0) {
+          setInfoMsg('Nenhum personagem encontrado')
+        return
+      }
       const personagens = data.data
       let newPersonagensBusca = []
 
@@ -54,6 +65,7 @@ export function Home() {
     setPersonagensCardBusca([])
   }
 
+
   return (
     <div className="home">
         <header>
@@ -74,6 +86,7 @@ export function Home() {
       </div>
 
       { loader && <LoadingCard/>}
+      {infoMsg && <InfoCard msg={infoMsg}/>}
 
       {detailCharacter}
 
@@ -93,7 +106,6 @@ export function Home() {
         )
       }
       
-
     </div>
   )
 }
