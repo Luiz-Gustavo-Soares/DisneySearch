@@ -56,3 +56,28 @@ header h1 {
 .buscar button:hover {
     opacity: 0.9;
 }
+
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color5);
+    color: var(--color2);
+}
+
+footer p {
+    font-size: 0.8em;
+    padding: 4px;
+    font-family: var(--font2);
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--color2);
+}
+
+footer a:hover {
+    color:  var(--color4);
+}

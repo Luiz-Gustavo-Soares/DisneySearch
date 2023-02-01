@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import "./style.css";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsGithub } from "react-icons/bs";
 
 import { CharacterCard } from "../../components/characterCard";
 import { DetailCharacter } from "../../components/detailCharacter";
@@ -68,9 +68,9 @@ export function Home() {
 
   return (
     <div className="home">
-        <header>
-            <h1 onClick={reset} >DisneySearch</h1>
-        </header>
+      <header>
+          <h1 onClick={reset} >DisneySearch</h1>
+      </header>
       <div className="buscar">
         <input 
           type="text" 
@@ -106,6 +106,9 @@ export function Home() {
         )
       }
       
+      <footer>
+        <p> Desenvolvido por Luiz Gustavo | <a href="https://guthub.com/luiz-gustavo-soares" target="_blank">Github <BsGithub size={12} /></a></p>
+      </footer>
     </div>
   )
 }
