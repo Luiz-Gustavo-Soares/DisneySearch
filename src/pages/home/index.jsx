@@ -5,6 +5,7 @@ import { BsSearch } from "react-icons/bs";
 
 import { CharacterCard } from "../../components/characterCard";
 import { DetailCharacter } from "../../components/detailCharacter"
+import { LoadingCard } from "../../components/loadingCard";
 
 
 export function Home() {
@@ -12,6 +13,7 @@ export function Home() {
   const [personagemBuscInput, setPersonagemBuscInput] = useState('')
   const [personagensCardBusca, setPersonagensCardBusca] = useState([])
   const [detailCharacter, setDetailCharacter] = useState()
+  const [loader, setLoader] = useState(false)
 
   function buscarPersonagens(nome, tipo='name'){
     
@@ -20,6 +22,8 @@ export function Home() {
     }
 
     setDetailCharacter()
+    setLoader(true)
+    setPersonagensCardBusca([])
 
     fetch(`https://api.disneyapi.dev/character?${tipo}=${nome}`)
     .then(response => response.json())
@@ -37,6 +41,7 @@ export function Home() {
 
     })
     .catch(error => console.log(error))
+    .finally( () => setLoader(false))
   }
 
   function getDetailCharacter(id) {
@@ -67,6 +72,8 @@ export function Home() {
           <BsSearch color="#fff" size={20}/>
         </button>
       </div>
+
+      { loader && <LoadingCard/>}
 
       {detailCharacter}
 
